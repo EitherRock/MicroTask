@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <ul>
+        {% for todo in todos %}
+        <li>
+            {{ todo.text }}
+            {% if not todo.done %}
+            <a href="{{ url_for('complete_todo', todo_id=loop.index-1) }}">Mark as Complete</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    <form action="/add" method="post">
+        <input type="text" name="todo" placeholder="New Todo" required>
+        <button type="submit">Add Todo</button>
+    </form>
+</body>
+</html>
